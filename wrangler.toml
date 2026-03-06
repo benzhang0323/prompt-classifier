@@ -1,0 +1,17 @@
+name = "prompt-classifier"
+main = "src/index.mjs"
+compatibility_date = "2025-11-20"
+account_id = "<your-account-id>"
+
+[ai]
+binding = "AI"
+
+[vars]
+MODEL_ID = "@cf/meta/llama-3.2-3b-instruct"
+
+[observability]
+enabled = true
+
+[assets]
+binding   = "ASSETS"
+directory = "./public"

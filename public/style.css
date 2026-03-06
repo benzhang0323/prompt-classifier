@@ -1,0 +1,379 @@
+/* ----- Reset-ish basics ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #020617 40%, #000 100%);
+  color: #e5e7eb;
+}
+
+/* ----- Layout shell ----- */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top bar */
+.top-bar {
+  height: 56px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #22d3ee, #4f46e5);
+}
+
+.top-bar-title {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-pill {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #cbd5f5;
+}
+
+/* ----- Hero center ----- */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 1rem 3rem;
+}
+
+.hero-center {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 2.6rem;
+  margin: 0;
+  font-weight: 700;
+  background: linear-gradient(to right, #6366f1, #22d3ee);
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  margin: 0;
+  max-width: 560px;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+/* Model label above bar */
+.model-label {
+  margin-top: 0.25rem;
+  color: #a5b4fc;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ----- Prompt card ----- */
+.prompt-card {
+  margin-top: 0.75rem;
+  width: min(800px, 100%);
+  border-radius: 22px;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.9),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Single-line textarea that auto-expands */
+.prompt-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  resize: none;
+  max-height: 7rem;
+  padding: 0;
+}
+
+.prompt-input::placeholder {
+  color: #6b7280;
+}
+
+.prompt-send {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: radial-gradient(circle at 30% 20%, #4f46e5, #22c55e);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.65);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.prompt-send:disabled {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+}
+
+.prompt-send:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 35px rgba(22, 163, 74, 0.8);
+}
+
+.send-icon {
+  font-size: 1rem;
+}
+
+.prompt-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-left: 0.1rem;
+}
+
+.hint-chip {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: transparent;
+  color: #9ca3af;
+  font-size: 0.72rem;
+  padding: 0.18rem 0.65rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hint-chip:hover {
+  border-color: #a5b4fc;
+  color: #e5e7eb;
+}
+
+/* ----- Result card ----- */
+.result-card {
+  margin-top: 1.75rem;
+  width: min(800px, 100%);
+  border-radius: 1.25rem;
+  padding: 1rem 1.25rem 1.2rem;
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.9),
+    0 0 0 1px rgba(148, 163, 184, 0.2);
+  text-align: left;
+}
+
+.hidden {
+  display: none;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.result-risk {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.badge {
+  padding: 0.1rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge-low {
+  background: #064e3b;
+  color: #a7f3d0;
+}
+
+.badge-medium {
+  background: #78350f;
+  color: #fed7aa;
+}
+
+.badge-high {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.badge-unknown {
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.allowed-label {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.allowed-label span {
+  font-weight: 600;
+}
+
+.result-meta {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.meta-pill {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-size: 0.68rem;
+  color: #9ca3af;
+}
+
+/* Body content */
+.result-body {
+  border-top: 1px solid rgba(55, 65, 81, 0.9);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.result-line {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.result-label {
+  font-weight: 500;
+  color: #e5e7eb;
+  margin-right: 0.35rem;
+}
+
+#categories-text {
+  color: #c4b5fd;
+}
+
+.recs-list {
+  margin: 0.25rem 0 0.25rem 0;
+  padding-left: 1.1rem;
+  color: #d1d5db;
+  font-size: 0.88rem;
+}
+
+.recs-list li {
+  margin-bottom: 0.1rem;
+}
+
+.prompt-echo {
+  color: #9ca3af;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Raw JSON details
+.raw-details {
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: #9ca3af;
+}
+
+.raw-json {
+  margin-top: 0.3rem;
+  max-height: 240px;
+  overflow: auto;
+  background: #020617;
+  border-radius: 0.5rem;
+  padding: 0.65rem;
+  font-size: 0.78rem;
+  color: #e5e7eb;
+}
+*/
+
+/* ----- Responsive modifications ----- */
+@media (max-width: 640px) {
+  .hero-center {
+    margin-top: 2.25rem;
+    align-items: stretch;
+  }
+
+  .prompt-card,
+  .result-card {
+    border-radius: 1.25rem;
+  }
+
+  .prompt-row {
+    align-items: flex-start;
+  }
+
+  .prompt-send {
+    width: 36px;
+    height: 36px;
+  }
+}

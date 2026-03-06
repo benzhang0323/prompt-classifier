@@ -1,0 +1,76 @@
+# Development Prompts
+
+The following prompts represent key instructions, debugging queries, and engineering requests used throughout the development of this project. They are lightly edited for grammar and readability but maintain the original meaning and structure of the developer’s real prompts.
+
+These prompts demonstrate the iterative process of building and refining the Cloudflare Workers–based LLM Security Inferencer, including frontend design, backend logic, model prompt engineering, JSON-handling, and security heuristic development.
+
+---
+
+- Fix this JavaScript; the current code isn’t functioning correctly.
+- We’re sending a prompt to an LLM to check if another LLM can receive it, is that architecture flawed?
+- Is the flow supposed to be: prompt → inferencer → accepted → main model?
+- Help me apply this specific key structure in index.mjs.
+- The model isn’t parsing JSON, is the backend written correctly?
+- Why is the frontend not displaying the response from the Worker?
+- Return a fixed version of all individual Worker files.
+- Why am I getting this Miniflare fetch error?
+- Help me debug this evaluation prompt.
+- Is this response_format block valid for Workers AI?
+- Why is the model still returning invalid JSON after forcing constraints?
+- We need a consistent method to prevent JSON parsing failures.
+- Sometimes JSON parses, sometimes it breaks, please identify this issue
+- Sanitize the model output so markdown does not break JSON parsing.
+- Where should the JSON extraction happen so fallback triggers correctly?
+- Why is my non-malicious prompt going into the fallback?
+- What’s the correct few-shot structure for forcing clean classifier output?
+- Is the system prompt too general? Should I specify its job more precisely?
+- Help me tighten the classifier prompt to reduce hallucinated fields.
+- Workers AI throws an unknown variant error, identify the cause.
+- Show me a robust fallback that always returns valid JSON.
+- Model output should not bypass fallback when JSON is malformed.
+- Why did this threat message not get flagged by the detector?
+- Write a more reliable injection detection function.
+- Expand malware detection to include exploit-oriented verbs.
+- Add a heuristic for cyberattack prompts including scanning and enumeration.
+- Add a detector for data exfiltration patterns involving keys or tokens.
+- Fix this data exfiltration regex.
+- Do keyword lists for detection need to be manually maintained?
+- Add a fallback analyzer when JSON is unusable from the AI.
+- Differentiate between model failure and prompt-based injection attempts.
+- Strengthen the conditions that classify high-risk prompts.
+- Show me a properly structured schema for the classifier fields.
+- How do I correctly nest JSON schema inside Workers AI’s configuration?
+- Why is the model still ignoring the schema?
+- Clamp the output to the first JSON object automatically.
+- Ensure fallback overrides the model only when necessary.
+- Add a _source flag to explain whether the model or fallback produced the result.
+- Improve error message clarity for schema parsing issues.
+- Strip extra text if the model returns more than just JSON.
+- Fix the strict JSON instructions so the model follows them reliably.
+- Make the input bar resemble a pill-like style.
+- Resize and restyle the input bar to match modern LLM designs.
+- Adjust the roundness to make it less pill-like and more rectangular.
+- Increase the width of the input bar.
+- Move the classification output into a separate container.
+- Implement a clean header bar.
+- Center the title above the input bar properly.
+- Fix the gradient hero title, background clipping isn’t working.
+- Expand the layout to use more page width.
+- Avoid showing the result container before any prompt is analyzed.
+- Animate the send button on hover with a subtle glow.
+- Improve the spacing between the input bar and results container.
+- Ensure the design stays clean even without prior prompts.
+- Split the UI into separate HTML, CSS, and JS files.
+- Ensure the Worker serves ui.html correctly from the ASSETS binding.
+- Fix the error where ASSETS.fetch is undefined.
+- Ensure the ASSETS binding works correctly in production.
+- Show how to structure static assets for Cloudflare Workers.
+- Ensure ui.html references CSS and JS paths properly.
+- Write a clean README.md for the project.
+- Add a diagram showing the flow: user → inferencer → LLM.
+- Document installation and deployment steps clearly.
+- Refine the project’s purpose and threat model in README.
+- Document fallback behavior and JSON sanitation logic.
+- Provide a clear directory structure in the README.
+- Explain how to configure secrets for secure deployment.
+- Add notes about Workers AI free quota and daily limits.
